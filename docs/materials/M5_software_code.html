@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduzione ad R – m5_software_code</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/roughnotation-0.5.1/rough-notation.iife.js"></script>
+<script src="../site_libs/quarto-contrib/roughnotation-init-1.0.0/rough.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../materials/images/revelo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduzione ad R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-slides">    
+        <li>
+    <a class="dropdown-item" href="../materials/M1_intro.html" rel="" target="">
+ <span class="dropdown-text">Modulo I: Introduzione al corso</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1" rel="" target="">
+ <span class="dropdown-text">Modulo II: Ricerca Riproducibile</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://datacarpentry.org/spreadsheet-ecology-lesson/" rel="" target="">
+ <span class="dropdown-text">Modulo III: L’organizzazione dei dati</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../materials/M3_introR.html" rel="" target="">
+ <span class="dropdown-text">Modulo IV: Cosa sono R e RStudio?</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../materials/risorse.html" rel="" target="">
+ <span class="menu-text">Materiale aggiuntivo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://revelotraining.slack.com" rel="" target="">
+ <span class="menu-text">Slack chat</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1jLnkacbeItPUl6gIdWrf2EAQoaEBQM6R?usp=share_link" rel="" target="">
+ <span class="menu-text">Cartella condivisa</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mappe-concettuali" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Mappe concettuali</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mappe-concettuali">    
+        <li>
+    <a class="dropdown-item" href="../materials/images/R.pdf" rel="" target="">
+ <span class="dropdown-text">R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../materials/images/variable.pdf" rel="" target="">
+ <span class="dropdown-text">Variabile in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../materials/images/vector.pdf" rel="" target="">
+ <span class="dropdown-text">Vettore in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../materials/images/Dataframe.pdf" rel="" target="">
+ <span class="dropdown-text">Dataframes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../materials/images/tibble.pdf" rel="" target="">
+ <span class="dropdown-text">Tibble</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://revelodatalabs.com" rel="" target="">
+ <span class="menu-text">Revelo DataLabs</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mchiapello/202305_REVELO_TorVergata_Intro2R" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#TitleSlide" id="toc-TitleSlide" class="nav-link active" data-scroll-target="#TitleSlide"></a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files"><span class="tit p-span-center">Files</span></a>
+  <ul class="collapse">
+  <li><a href="#diversi-tipi-di-file" id="toc-diversi-tipi-di-file" class="nav-link" data-scroll-target="#diversi-tipi-di-file">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file" id="toc-fasta-file" class="nav-link" data-scroll-target="#fasta-file">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-1" id="toc-diversi-tipi-di-file-1" class="nav-link" data-scroll-target="#diversi-tipi-di-file-1">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file-1" id="toc-fasta-file-1" class="nav-link" data-scroll-target="#fasta-file-1">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-2" id="toc-diversi-tipi-di-file-2" class="nav-link" data-scroll-target="#diversi-tipi-di-file-2">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file-2" id="toc-fasta-file-2" class="nav-link" data-scroll-target="#fasta-file-2">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-3" id="toc-diversi-tipi-di-file-3" class="nav-link" data-scroll-target="#diversi-tipi-di-file-3">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file-3" id="toc-fasta-file-3" class="nav-link" data-scroll-target="#fasta-file-3">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-4" id="toc-diversi-tipi-di-file-4" class="nav-link" data-scroll-target="#diversi-tipi-di-file-4">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file-4" id="toc-fasta-file-4" class="nav-link" data-scroll-target="#fasta-file-4">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-5" id="toc-diversi-tipi-di-file-5" class="nav-link" data-scroll-target="#diversi-tipi-di-file-5">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fasta-file-5" id="toc-fasta-file-5" class="nav-link" data-scroll-target="#fasta-file-5">FASTA file</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-6" id="toc-diversi-tipi-di-file-6" class="nav-link" data-scroll-target="#diversi-tipi-di-file-6">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format" id="toc-fastq-format" class="nav-link" data-scroll-target="#fastq-format">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-7" id="toc-diversi-tipi-di-file-7" class="nav-link" data-scroll-target="#diversi-tipi-di-file-7">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format-1" id="toc-fastq-format-1" class="nav-link" data-scroll-target="#fastq-format-1">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-8" id="toc-diversi-tipi-di-file-8" class="nav-link" data-scroll-target="#diversi-tipi-di-file-8">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format-2" id="toc-fastq-format-2" class="nav-link" data-scroll-target="#fastq-format-2">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-9" id="toc-diversi-tipi-di-file-9" class="nav-link" data-scroll-target="#diversi-tipi-di-file-9">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format-3" id="toc-fastq-format-3" class="nav-link" data-scroll-target="#fastq-format-3">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-10" id="toc-diversi-tipi-di-file-10" class="nav-link" data-scroll-target="#diversi-tipi-di-file-10">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format-4" id="toc-fastq-format-4" class="nav-link" data-scroll-target="#fastq-format-4">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-11" id="toc-diversi-tipi-di-file-11" class="nav-link" data-scroll-target="#diversi-tipi-di-file-11">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#fastq-format-5" id="toc-fastq-format-5" class="nav-link" data-scroll-target="#fastq-format-5">FASTQ format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-12" id="toc-diversi-tipi-di-file-12" class="nav-link" data-scroll-target="#diversi-tipi-di-file-12">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format" id="toc-sambam-format" class="nav-link" data-scroll-target="#sambam-format">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-13" id="toc-diversi-tipi-di-file-13" class="nav-link" data-scroll-target="#diversi-tipi-di-file-13">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format-1" id="toc-sambam-format-1" class="nav-link" data-scroll-target="#sambam-format-1">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-14" id="toc-diversi-tipi-di-file-14" class="nav-link" data-scroll-target="#diversi-tipi-di-file-14">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format-2" id="toc-sambam-format-2" class="nav-link" data-scroll-target="#sambam-format-2">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-15" id="toc-diversi-tipi-di-file-15" class="nav-link" data-scroll-target="#diversi-tipi-di-file-15">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format-3" id="toc-sambam-format-3" class="nav-link" data-scroll-target="#sambam-format-3">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-16" id="toc-diversi-tipi-di-file-16" class="nav-link" data-scroll-target="#diversi-tipi-di-file-16">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format-4" id="toc-sambam-format-4" class="nav-link" data-scroll-target="#sambam-format-4">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-17" id="toc-diversi-tipi-di-file-17" class="nav-link" data-scroll-target="#diversi-tipi-di-file-17">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#sambam-format-5" id="toc-sambam-format-5" class="nav-link" data-scroll-target="#sambam-format-5">SAM/BAM format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-18" id="toc-diversi-tipi-di-file-18" class="nav-link" data-scroll-target="#diversi-tipi-di-file-18">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#bedgtfgff3-formats" id="toc-bedgtfgff3-formats" class="nav-link" data-scroll-target="#bedgtfgff3-formats">BED/GTF/GFF3 formats</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-19" id="toc-diversi-tipi-di-file-19" class="nav-link" data-scroll-target="#diversi-tipi-di-file-19">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#bed" id="toc-bed" class="nav-link" data-scroll-target="#bed">BED</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-20" id="toc-diversi-tipi-di-file-20" class="nav-link" data-scroll-target="#diversi-tipi-di-file-20">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#bed-1" id="toc-bed-1" class="nav-link" data-scroll-target="#bed-1">BED</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-21" id="toc-diversi-tipi-di-file-21" class="nav-link" data-scroll-target="#diversi-tipi-di-file-21">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#gtf-format" id="toc-gtf-format" class="nav-link" data-scroll-target="#gtf-format">GTF format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-22" id="toc-diversi-tipi-di-file-22" class="nav-link" data-scroll-target="#diversi-tipi-di-file-22">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#gtf-format-1" id="toc-gtf-format-1" class="nav-link" data-scroll-target="#gtf-format-1">GTF format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-23" id="toc-diversi-tipi-di-file-23" class="nav-link" data-scroll-target="#diversi-tipi-di-file-23">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#gff3-format" id="toc-gff3-format" class="nav-link" data-scroll-target="#gff3-format">GFF3 format</a></li>
+  </ul></li>
+  <li><a href="#diversi-tipi-di-file-24" id="toc-diversi-tipi-di-file-24" class="nav-link" data-scroll-target="#diversi-tipi-di-file-24">Diversi tipi di file</a>
+  <ul class="collapse">
+  <li><a href="#gff3-format-1" id="toc-gff3-format-1" class="nav-link" data-scroll-target="#gff3-format-1">GFF3 format</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software"><span class="tit p-span-center">Software</span></a>
+  <ul class="collapse">
+  <li><a href="#diversi-software" id="toc-diversi-software" class="nav-link" data-scroll-target="#diversi-software">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#terminal" id="toc-terminal" class="nav-link" data-scroll-target="#terminal">Terminal</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-1" id="toc-diversi-software-1" class="nav-link" data-scroll-target="#diversi-software-1">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#pre-alignment-qc" id="toc-pre-alignment-qc" class="nav-link" data-scroll-target="#pre-alignment-qc">Pre-alignment QC</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-2" id="toc-diversi-software-2" class="nav-link" data-scroll-target="#diversi-software-2">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#trimfilter-reads" id="toc-trimfilter-reads" class="nav-link" data-scroll-target="#trimfilter-reads">Trim/filter reads</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-3" id="toc-diversi-software-3" class="nav-link" data-scroll-target="#diversi-software-3">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma" id="toc-allineamento-al-genoma" class="nav-link" data-scroll-target="#allineamento-al-genoma">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-4" id="toc-diversi-software-4" class="nav-link" data-scroll-target="#diversi-software-4">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-1" id="toc-allineamento-al-genoma-1" class="nav-link" data-scroll-target="#allineamento-al-genoma-1">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-5" id="toc-diversi-software-5" class="nav-link" data-scroll-target="#diversi-software-5">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-2" id="toc-allineamento-al-genoma-2" class="nav-link" data-scroll-target="#allineamento-al-genoma-2">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-6" id="toc-diversi-software-6" class="nav-link" data-scroll-target="#diversi-software-6">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-3" id="toc-allineamento-al-genoma-3" class="nav-link" data-scroll-target="#allineamento-al-genoma-3">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-7" id="toc-diversi-software-7" class="nav-link" data-scroll-target="#diversi-software-7">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-4" id="toc-allineamento-al-genoma-4" class="nav-link" data-scroll-target="#allineamento-al-genoma-4">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-8" id="toc-diversi-software-8" class="nav-link" data-scroll-target="#diversi-software-8">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-5" id="toc-allineamento-al-genoma-5" class="nav-link" data-scroll-target="#allineamento-al-genoma-5">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-9" id="toc-diversi-software-9" class="nav-link" data-scroll-target="#diversi-software-9">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-6" id="toc-allineamento-al-genoma-6" class="nav-link" data-scroll-target="#allineamento-al-genoma-6">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-10" id="toc-diversi-software-10" class="nav-link" data-scroll-target="#diversi-software-10">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-7" id="toc-allineamento-al-genoma-7" class="nav-link" data-scroll-target="#allineamento-al-genoma-7">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-11" id="toc-diversi-software-11" class="nav-link" data-scroll-target="#diversi-software-11">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-8" id="toc-allineamento-al-genoma-8" class="nav-link" data-scroll-target="#allineamento-al-genoma-8">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-12" id="toc-diversi-software-12" class="nav-link" data-scroll-target="#diversi-software-12">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#allineamento-al-genoma-9" id="toc-allineamento-al-genoma-9" class="nav-link" data-scroll-target="#allineamento-al-genoma-9">Allineamento al genoma</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-13" id="toc-diversi-software-13" class="nav-link" data-scroll-target="#diversi-software-13">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge" id="toc-differential-gene-expression-dge" class="nav-link" data-scroll-target="#differential-gene-expression-dge">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-14" id="toc-diversi-software-14" class="nav-link" data-scroll-target="#diversi-software-14">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-1" id="toc-differential-gene-expression-dge-1" class="nav-link" data-scroll-target="#differential-gene-expression-dge-1">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-15" id="toc-diversi-software-15" class="nav-link" data-scroll-target="#diversi-software-15">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-2" id="toc-differential-gene-expression-dge-2" class="nav-link" data-scroll-target="#differential-gene-expression-dge-2">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-16" id="toc-diversi-software-16" class="nav-link" data-scroll-target="#diversi-software-16">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-3" id="toc-differential-gene-expression-dge-3" class="nav-link" data-scroll-target="#differential-gene-expression-dge-3">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-17" id="toc-diversi-software-17" class="nav-link" data-scroll-target="#diversi-software-17">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-4" id="toc-differential-gene-expression-dge-4" class="nav-link" data-scroll-target="#differential-gene-expression-dge-4">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-18" id="toc-diversi-software-18" class="nav-link" data-scroll-target="#diversi-software-18">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-5" id="toc-differential-gene-expression-dge-5" class="nav-link" data-scroll-target="#differential-gene-expression-dge-5">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-19" id="toc-diversi-software-19" class="nav-link" data-scroll-target="#diversi-software-19">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-6" id="toc-differential-gene-expression-dge-6" class="nav-link" data-scroll-target="#differential-gene-expression-dge-6">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-20" id="toc-diversi-software-20" class="nav-link" data-scroll-target="#diversi-software-20">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-7" id="toc-differential-gene-expression-dge-7" class="nav-link" data-scroll-target="#differential-gene-expression-dge-7">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-21" id="toc-diversi-software-21" class="nav-link" data-scroll-target="#diversi-software-21">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-8" id="toc-differential-gene-expression-dge-8" class="nav-link" data-scroll-target="#differential-gene-expression-dge-8">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-22" id="toc-diversi-software-22" class="nav-link" data-scroll-target="#diversi-software-22">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-9" id="toc-differential-gene-expression-dge-9" class="nav-link" data-scroll-target="#differential-gene-expression-dge-9">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-23" id="toc-diversi-software-23" class="nav-link" data-scroll-target="#diversi-software-23">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-10" id="toc-differential-gene-expression-dge-10" class="nav-link" data-scroll-target="#differential-gene-expression-dge-10">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-24" id="toc-diversi-software-24" class="nav-link" data-scroll-target="#diversi-software-24">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-11" id="toc-differential-gene-expression-dge-11" class="nav-link" data-scroll-target="#differential-gene-expression-dge-11">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-25" id="toc-diversi-software-25" class="nav-link" data-scroll-target="#diversi-software-25">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-12" id="toc-differential-gene-expression-dge-12" class="nav-link" data-scroll-target="#differential-gene-expression-dge-12">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-26" id="toc-diversi-software-26" class="nav-link" data-scroll-target="#diversi-software-26">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-13" id="toc-differential-gene-expression-dge-13" class="nav-link" data-scroll-target="#differential-gene-expression-dge-13">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  <li><a href="#diversi-software-27" id="toc-diversi-software-27" class="nav-link" data-scroll-target="#diversi-software-27">Diversi Software</a>
+  <ul class="collapse">
+  <li><a href="#differential-gene-expression-dge-14" id="toc-differential-gene-expression-dge-14" class="nav-link" data-scroll-target="#differential-gene-expression-dge-14">Differential Gene Expression (DGE)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="M5_software_code.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="TitleSlide" class="level2" data-menu-title="TitleSlide" data-background-image="images/back001.jpg" data-background-size="cover" data-background-opacity="0.3">
+<h2 data-menu-title="TitleSlide" data-background-image="images/back001.jpg" data-background-size="cover" data-background-opacity="0.3" class="anchored" data-anchor-id="TitleSlide"></h2>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Julius+Sans+One&family=Montserrat:wght@300&family=Rock+Salt&display=swap');
+</style>
+<div style="position: absolute; left: 180px; top: 200px; height: 525px; width: 1500px; background-color: #69b1e9; padding: 20px; padding-left: 50px; border-radius: 5px;">
+<p><span style="font-size: 120px; font-weight: bold; line-height: 1em; margin: 0px; font-family: 'Architects Daughter', cursive;">Files and Software</span></p>
+<p><span style="font-size: 40px;font-weight: bold;">Introduzione all’analisi RNASeq in R</span></p>
+<p><span style="font-size: 40px;font-weight: bold;">Dipartimento di Biomedicina e Prevenzione</span></p>
+<p><br> <br></p>
+<p><span style="font-size: 40px; font-weight: bold;">Marco Chiapello, Revelo Datalab</span></p>
+<p><span style="font-size: 30px;font-weight: bold;">2023-03-31</span></p>
+</div>
+</section>
+<section id="files" class="level1">
+<h1><span class="tit p-span-center">Files</span></h1>
+<section id="diversi-tipi-di-file" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file">Diversi tipi di file</h2>
+<section id="fasta-file" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file">FASTA file</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il Formato FASTA è un formato di testo per rappresentare le sequenze nucleotidiche o le sequenze aminoacidiche. Sia i nucleotidi che gli aminoacidi sono rappresentati da una singola lettera. Sulla prima linea antecedente alla sequenza nucleotidica/aminoacidica viene riportato il nome della sequenza, preceduto dal simbolo “&gt;”</p>
+</div>
+</div>
+<p>I file contenenti queste sequenze possono avere varie desinenze: fasta, fna, ffn, faa, fa, frn</p>
+</section>
+</section>
+<section id="diversi-tipi-di-file-1" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-1">Diversi tipi di file</h2>
+<section id="fasta-file-1" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file-1">FASTA file</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il Formato FASTA è un formato di testo per rappresentare le sequenze nucleotidiche o le sequenze aminoacidiche. Sia i nucleotidi che gli aminoacidi sono rappresentati da una singola lettera. Sulla prima linea antecedente alla sequenza nucleotidica/aminoacidica viene riportato il nome della sequenza, preceduto dal simbolo “&gt;”</p>
+</div>
+</div>
+<pre><code>&gt;NM_001404729.1 Oryza sativa ribulose bisphosphate carboxylase small chain A
+CTCAACAGCACTGCTACTGGACATACTCTACTACTACTAGCCAGTAAGCTAGCTAACTAACTACGTGGCT
+ATGGCCCCCACCGTGATGGCCTCCTCGGCCACCTCCGTGGCTCCATTCCAAGGGCTCAANNNNNNNNNNN</code></pre>
+</section>
+</section>
+<section id="diversi-tipi-di-file-2" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-2">Diversi tipi di file</h2>
+<section id="fasta-file-2" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file-2">FASTA file</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il Formato FASTA è un formato di testo per rappresentare le sequenze nucleotidiche o le sequenze aminoacidiche. Sia i nucleotidi che gli aminoacidi sono rappresentati da una singola lettera. Sulla prima linea antecedente alla sequenza nucleotidica/aminoacidica viene riportato il nome della sequenza, preceduto dal simbolo “&gt;”</p>
+</div>
+</div>
+<pre><code>&gt;MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken
+MADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
+FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
+DIDGDGQVNYEEFVQMMTAKXXXXXX</code></pre>
+</section>
+</section>
+<section id="diversi-tipi-di-file-3" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-3">Diversi tipi di file</h2>
+<section id="fasta-file-3" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file-3">FASTA file</h3>
+<p>È possibile creare dei file che contengano più sequenze concatenando singoli FASTA file.</p>
+<pre><code>&gt;MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken
+MADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID
+FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA
+DIDGDGQVNYEEFVQMMTAK
+
+&gt;gi|5524211|gb|AAD44166.1| cytochrome b [Elephas maximus maximus]
+LCLYTHIGRNIYYGSYLYSETWNTGIMLLLITMATAFMGYVLPWGQMSFWGATVITNLFSAIPYIGTNLV
+EWIWGGFSVDKATLNRFFAFHFILPFTMVALAGVHLTFLHETGSNNPLGLTSDSDKIPFHPYYTIKDFLG
+LLILILLLLLLALLSPDMLGDPDNHMPADPLNTPLHIKPEWYFLFAYAILRSVPNKLGGVLALFLSIVIL
+GLMPFLHTSKHRSMMLRPLSQALFWTLTMDLLTLTWIGSQPVEYPYTIIGQMASILYFSIILAFLPIAGX
+IENY*</code></pre>
+</section>
+</section>
+<section id="diversi-tipi-di-file-4" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-4">Diversi tipi di file</h2>
+<section id="fasta-file-4" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file-4">FASTA file</h3>
+<section id="nucleotidi" class="level4">
+<h4 class="anchored" data-anchor-id="nucleotidi">Nucleotidi</h4>
+<p><img src="images/nucl.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-5" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-5">Diversi tipi di file</h2>
+<section id="fasta-file-5" class="level3">
+<h3 class="anchored" data-anchor-id="fasta-file-5">FASTA file</h3>
+<section id="aminoacidi" class="level4">
+<h4 class="anchored" data-anchor-id="aminoacidi">Aminoacidi</h4>
+<p><img src="images/amino.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-6" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-6">Diversi tipi di file</h2>
+<section id="fastq-format" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format">FASTQ format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il formato FASTQ è un formato di testo per rappresentare sia le sequenze biologiche (normalmente nucleotidiche) sia il corrispettivo valore di qualità. Sia le sequenze che lo score di qualità sono codificati da una singola lettera (carattere ASCII) per brevità.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-7" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-7">Diversi tipi di file</h2>
+<section id="fastq-format-1" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format-1">FASTQ format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il formato FASTQ è un formato di testo per rappresentare sia le sequenze biologiche (normalmente nucleotidiche) sia il corrispettivo valore di qualità. Sia le sequenze che lo score di qualità sono codificati da una singola lettera (carattere ASCII) per brevità.</p>
+</div>
+</div>
+<div class="f20">
+<p>Un file FASTQ è identificato da 4 linee:</p>
+<ul>
+<li>Linea 1: inizia con il simbolo “@” ed è seguita dall’identificativo della sequenza (come nelle sequenze FASTA)</li>
+<li>Linea 2: contiene la sequenza nucleotidica</li>
+<li>Linea 3: inizia con un “+” e può contenere descrizioni aggiuntive della sequenza</li>
+<li>Linea 4: contiene i valori di qualità dei singoli nucleotidi</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-8" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-8">Diversi tipi di file</h2>
+<section id="fastq-format-2" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format-2">FASTQ format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il formato FASTQ è un formato di testo per rappresentare sia le sequenze biologiche (normalmente nucleotidiche) sia il corrispettivo valore di qualità. Sia le sequenze che lo score di qualità sono codificati da una singola lettera (carattere ASCII) per brevità.</p>
+</div>
+</div>
+<pre><code>@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF&gt;&gt;&gt;&gt;&gt;&gt;CCCCCCC65</code></pre>
+</section>
+</section>
+<section id="diversi-tipi-di-file-9" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-9">Diversi tipi di file</h2>
+<section id="fastq-format-3" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format-3">FASTQ format</h3>
+<section id="cosa-significa-score-di-qualità" class="level4">
+<h4 class="anchored" data-anchor-id="cosa-significa-score-di-qualità">Cosa significa “score di qualità”?</h4>
+<div class="f20">
+<p>Lo score di qualità è usato per identificare la <strong>probabilità di corretta identificazione del corrispondente nucleotide</strong>.</p>
+</div>
+<p><img src="images/phred1.png" class="img-fluid"></p>
+<div class="notes">
+<ul>
+<li>I numeri da 33 a 126 sono i numeri ASCII corrispondenti alla lettera che indicano</li>
+<li>Score più alto osservato 40, quindi molti si fermano li</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-10" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-10">Diversi tipi di file</h2>
+<section id="fastq-format-4" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format-4">FASTQ format</h3>
+<section id="cosa-significa-score-di-qualità-1" class="level4">
+<h4 class="anchored" data-anchor-id="cosa-significa-score-di-qualità-1">Cosa significa “score di qualità”?</h4>
+<div class="f20">
+<p>Lo score di qualità è usato per identificare la <strong>probabilità di corretta identificazione del corrispondente nucleotide</strong>.</p>
+</div>
+<div class="centerI">
+<p><img src="images/phred2.png" class="img-fluid"></p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-11" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-11">Diversi tipi di file</h2>
+<section id="fastq-format-5" class="level3">
+<h3 class="anchored" data-anchor-id="fastq-format-5">FASTQ format</h3>
+<p>I FASTQ file possono avere dimensioni molto grandi, per questo nella maggior parte dei casi non avrete a che fare con ilMioFile.fastq, ma con ilMioFile.fastq.gz.</p>
+<p>Questo significa che il file è compresso, quindi non leggibile da un editor di testa senza prima essere de-compresso.</p>
+</section>
+</section>
+<section id="diversi-tipi-di-file-12" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-12">Diversi tipi di file</h2>
+<section id="sambam-format" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format">SAM/BAM format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I file SAM (Sequence Alignment Map) sono file di testo creati originariamente per contenere le sequenze biologiche allineate ad una sequenza di riferimento (genoma).</p>
+</div>
+</div>
+<div class="f30">
+<ul>
+<li>Il formato è stato sviluppato per il progetto 1000 Genome.</li>
+<li>Questo formato è largamente usato per le sequenze nucleotiche generate dalle tecnologie NGS.</li>
+<li>Nella maggior parte dei casi non vi troverete a che fare con un file SAM, ma con un file BAM</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-13" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-13">Diversi tipi di file</h2>
+<section id="sambam-format-1" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format-1">SAM/BAM format</h3>
+<section id="differenza-tra-sam-e-bam" class="level4">
+<h4 class="anchored" data-anchor-id="differenza-tra-sam-e-bam">Differenza tra SAM e BAM?</h4>
+<div class="fragment">
+<ul>
+<li>In realtà nessuna! I due file sono identici nel contenuto</li>
+<li>In pratica il file SAM può essere letto da un editor di testo, mentre il file BAM no.</li>
+<li>Il BAM è un file binary, cioè machine-readable. È più compresso del file human-readable.</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-14" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-14">Diversi tipi di file</h2>
+<section id="sambam-format-2" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format-2">SAM/BAM format</h3>
+<div class="f30">
+<p>I file SAM/BAM consistono in 2 parti una intestazione (header) e un allineamento.</p>
+<ul>
+<li>L’<strong>intestazione</strong>
+<ul>
+<li>(se presente) dev’essere prima dell’allineamento</li>
+<li>Ogni riga dell’intestazione inizia con il simbolo “@”</li>
+<li>Una coppia di lettere che segue il simbolo “@” indica la sezione dell’intestazione</li>
+</ul></li>
+</ul>
+<div class="code">
+<pre><code>@RG     ID:1    SM:C5926_BM_IonCode_0118
+@PG     ID:samtools     PN:samtools    VN:1.16.1    CL:samtools view -H C5926_BM_IonCode_0118.reassembled.bam</code></pre>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><span class="citation" data-cites="RG">@RG</span> = read group
+<ul>
+<li>ID = Read group identifier</li>
+<li>SM = Sample</li>
+</ul></li>
+<li><span class="citation" data-cites="PG">@PG</span> = Program
+<ul>
+<li>ID = Program record identifier</li>
+<li>PN = Program name</li>
+<li>VN = software version</li>
+<li>Cl = command line</li>
+</ul></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-15" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-15">Diversi tipi di file</h2>
+<section id="sambam-format-3" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format-3">SAM/BAM format</h3>
+<div class="f30">
+<p>I file SAM/BAM consistono in 2 parti una intestazione (header) e un allineamento.</p>
+<ul>
+<li>L’<strong>allineamento</strong></li>
+</ul>
+</div>
+<p><img src="images/bam2.png" class="absolute" data-top="400" data-left="0" width="700"></p>
+<p><img src="images/bam1.png" class="absolute" data-top="300" data-right="0" width="350"></p>
+<div class="notes">
+<ul>
+<li><p>11 campi obbligatori</p></li>
+<li><p>Metadati non obbligatori</p></li>
+<li><p>Concise Idiosyncratic Gapped Alignment Report (CIGAR) string</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-16" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-16">Diversi tipi di file</h2>
+<section id="sambam-format-4" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format-4">SAM/BAM format</h3>
+<section id="flags" class="level4">
+<h4 class="anchored" data-anchor-id="flags">FLAGS</h4>
+<p><img src="images/flags1.png" class="absolute" data-left="250" width="600"></p>
+<div class="f20">
+<p><a href="https://broadinstitute.github.io/picard/explain-flags.html">Flag calculator</a></p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-17" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-17">Diversi tipi di file</h2>
+<section id="sambam-format-5" class="level3">
+<h3 class="anchored" data-anchor-id="sambam-format-5">SAM/BAM format</h3>
+<section id="cigar" class="level4">
+<h4 class="anchored" data-anchor-id="cigar">CIGAR</h4>
+<p><img src="images/cigar1.png" class="absolute" data-top="250" data-left="0" width="500"></p>
+<div class="fragment">
+<p><img src="images/cigar2.png" class="absolute" data-top="300" data-right="0" width="400"></p>
+</div>
+<div class="notes">
+<ul>
+<li>Concise Idiosyncratic Gapped Alignment Report (CIGAR) string</li>
+<li>Rappresenta l’allineamento di una sequenza al genoma di riferimento</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-18" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-18">Diversi tipi di file</h2>
+<section id="bedgtfgff3-formats" class="level3">
+<h3 class="anchored" data-anchor-id="bedgtfgff3-formats">BED/GTF/GFF3 formats</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Questi sono i tre principali formati di annotazione. Ci sono molte somiglianze ma anche alcune fondamentali differenze.</p>
+</div>
+</div>
+<div class="f30">
+<ul>
+<li>BED: permettono un solo livello di complessita, ogni caratteristica può essere divisa in diversi blocchi (linee del file)</li>
+<li>GTF: permettono 2 livelli di complessità, gli esoni possono essere raggruppati in trascritti e i trascritti in geni</li>
+<li>GFF3: permettono un numero arbitrari di livelli</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-19" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-19">Diversi tipi di file</h2>
+<section id="bed" class="level3">
+<h3 class="anchored" data-anchor-id="bed">BED</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I file BED (Browser Extensible Data) sono file di testo creati per descrivere caratteristiche del genoma.</p>
+</div>
+</div>
+<div class="fragment">
+<p><img src="images/bed1.png" class="absolute" data-top="350" data-left="20" width="1000"></p>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-20" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-20">Diversi tipi di file</h2>
+<section id="bed-1" class="level3">
+<h3 class="anchored" data-anchor-id="bed-1">BED</h3>
+<p><img src="images/bed2.png" class="absolute" data-top="150" data-left="30" width="1200"></p>
+</section>
+</section>
+<section id="diversi-tipi-di-file-21" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-21">Diversi tipi di file</h2>
+<section id="gtf-format" class="level3">
+<h3 class="anchored" data-anchor-id="gtf-format">GTF format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GFF2 or GTF (General Transfer Format) è un formato usato per descrivere due livelli di annotazione: geni e trascritti.</p>
+</div>
+</div>
+<div class="fragment">
+<p><img src="images/gtf1.png" class="gft1 absolute" data-top="360" data-left="20" width="1200"></p>
+</div>
+</section>
+</section>
+<section id="diversi-tipi-di-file-22" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-22">Diversi tipi di file</h2>
+<section id="gtf-format-1" class="level3">
+<h3 class="anchored" data-anchor-id="gtf-format-1">GTF format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GFF2 or GTF (General Transfer Format) è un formato usato per descrivere due livelli di annotazione: geni e trascritti.</p>
+</div>
+</div>
+<p><img src="images/gtf2.png" class="absolute" data-top="360" data-left="0" width="1200"></p>
+</section>
+</section>
+<section id="diversi-tipi-di-file-23" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-23">Diversi tipi di file</h2>
+<section id="gff3-format" class="level3">
+<h3 class="anchored" data-anchor-id="gff3-format">GFF3 format</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GFF3 (General Feature Format) è un file ti testo che contiene informazioni su ogni caratteristica delle sequenze nucleiche o aminiacidiche che descrive. CDS, microRNAs, binding domains, ORFs e molto altro possono essere gestite da questo formato</p>
+</div>
+</div>
+<section id="campi" class="level4 center">
+<h4 class="center anchored" data-anchor-id="campi">Campi</h4>
+<div class="columns">
+<div class="column f20" style="width:33%;">
+<ul>
+<li>Column 1: “seqid”</li>
+<li>Column 2: “source”</li>
+<li>Column 3: “type”</li>
+</ul>
+</div><div class="column f20" style="width:33%;">
+<ul>
+<li>Column 4:“start”</li>
+<li>Column 5: “end”</li>
+<li>Column 6: “score”</li>
+</ul>
+</div><div class="column f20" style="width:33%;">
+<ul>
+<li>Column 7: “strand”</li>
+<li>Column 8: “phase”</li>
+<li>Column 9: “attributes”</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-tipi-di-file-24" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-tipi-di-file-24">Diversi tipi di file</h2>
+<section id="gff3-format-1" class="level3">
+<h3 class="anchored" data-anchor-id="gff3-format-1">GFF3 format</h3>
+<p><img src="images/gff31.png" class="absolute" data-top="240" data-left="0" width="490"></p>
+<p><img src="images/gff32.png" class="absolute" data-top="170" data-left="500" width="600"></p>
+<div class="notes">
+<ul>
+<li>It encodes three alternatively-spliced transcripts named EDEN.1, EDEN.2 and EDEN.3,</li>
+<li><strong>EDEN.3</strong> has two alternative translational <strong>start sites</strong> leading to the generation of two protein coding sequences.</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="software" class="level1">
+<h1><span class="tit p-span-center">Software</span></h1>
+<section id="diversi-software" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software">Diversi Software</h2>
+<section id="terminal" class="level3">
+<h3 class="anchored" data-anchor-id="terminal">Terminal</h3>
+<p><br></p>
+<div class="tcenter">
+<p><span class="tit p-spam.center">DEMO</span></p>
+<p><a href="https://swcarpentry.github.io/shell-novice/">material</a></p>
+</div>
+</section>
+</section>
+<section id="diversi-software-1" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-1">Diversi Software</h2>
+<section id="pre-alignment-qc" class="level3">
+<h3 class="anchored" data-anchor-id="pre-alignment-qc">Pre-alignment QC</h3>
+<div class="tcenter">
+<p><span class="tit p-spam.center">FastQC</span></p>
+<p><br></p>
+<p><span class="p-spam.center"><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a></span></p>
+<p><br></p>
+<p><a href="https://mchiapello.github.io/202010_VirusDetection/Pres/M5_FastQC.html#2">material</a></p>
+</div>
+</section>
+</section>
+<section id="diversi-software-2" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-2">Diversi Software</h2>
+<section id="trimfilter-reads" class="level3">
+<h3 class="anchored" data-anchor-id="trimfilter-reads">Trim/filter reads</h3>
+<p>Questo passaggio è importante per</p>
+<ol type="1">
+<li><p>rimuovere i primer adapters</p></li>
+<li><p>Filtrare le reads di bassa qualità (se presenti)</p></li>
+</ol>
+<p>La rimozione delle reads di bassa qualità semplifica l’analisi a valle</p>
+</section>
+</section>
+<section id="diversi-software-3" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-3">Diversi Software</h2>
+<section id="allineamento-al-genoma" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma">Allineamento al genoma</h3>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definizione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’allineamenro delle reads al genoma permette di individuare le differenze tra le reads e il genoma di riferimento</p>
+</div>
+</div>
+<div class="centerI2">
+<p><img src="images/mapping.png" class="img-fluid"></p>
+</div>
+<div class="notes">
+<ul>
+<li><p>perform read alignment or mapping to determine where in the genome the reads originated from</p></li>
+<li><p>The alignment process consists of choosing an appropriate reference genome to map our reads against</p></li>
+<li><p>performing the read alignment using one of several splice-aware alignment tools</p></li>
+<li><p>The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="diversi-software-4" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-4">Diversi Software</h2>
+<section id="allineamento-al-genoma-1" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-1">Allineamento al genoma</h3>
+<section id="star" class="level4">
+<h4 class="anchored" data-anchor-id="star">STAR</h4>
+<ul>
+<li><p>Spliced Transcripts Alignment to a Reference</p></li>
+<li><p>STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping</p></li>
+<li><p>STAR requires a lot of computational power</p></li>
+</ul>
+<div class="p-img-center">
+<p><img src="images/star.png" class="img-fluid" width="400"></p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-5" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-5">Diversi Software</h2>
+<section id="allineamento-al-genoma-2" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-2">Allineamento al genoma</h3>
+<section id="quasi-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="quasi-mapping">Quasi mapping</h4>
+<ul>
+<li><p>Common to all of these tools is that base-to-base alignment of the reads is avoided, which is the time-consuming step</p></li>
+<li><p>These lightweight alignment tools provide quantification estimates much faster than older tools (typically more than 20 times faster) with improvements in accuracy</p></li>
+<li><p>These transcript expression estimates, often referred to as ‘pseudocounts’ or ‘abundance estimates’, can be aggregated to the gene level for use with differential gene expression tools like DESeq2</p></li>
+</ul>
+<div class="notes">
+<ul>
+<li><p>Salmon</p></li>
+<li><p>Kallisto</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-6" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-6">Diversi Software</h2>
+<section id="allineamento-al-genoma-3" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-3">Allineamento al genoma</h3>
+<section id="salmon" class="level4">
+<h4 class="anchored" data-anchor-id="salmon"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<ol type="1">
+<li><p>Salmon is a tool for wicked-fast transcript quantification from RNA-seq data</p></li>
+<li><p>All you need are:</p>
+<ul>
+<li><p>a FASTA file containing your reference transcripts</p></li>
+<li><p>a (set of) FASTA/FASTQ file(s) containing your reads</p></li>
+</ul></li>
+<li><p>Two strategies:</p>
+<pre><code>- mapping-based mode
+
+- alignment-based mode</code></pre></li>
+</ol>
+<div class="notes">
+<p>accurately quantify transcripts without having previously aligned the reads</p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-7" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-7">Diversi Software</h2>
+<section id="allineamento-al-genoma-4" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-4">Allineamento al genoma</h3>
+<section id="salmon-1" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-1"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="mapping-based-mode" class="level4">
+<h4 class="anchored" data-anchor-id="mapping-based-mode">mapping-based mode</h4>
+<ol type="1">
+<li><p>Preparing transcriptome indices</p>
+<pre><code>&gt; salmon index -t transcripts.fa.gz -i transcripts_index</code></pre></li>
+</ol>
+<p><br></p>
+<ol start="2" type="1">
+<li><p>Quantify</p>
+<pre><code>&gt; salmon quant -i transcripts_index -l &lt;LIBTYPE&gt; -1 reads1.fq -2 reads2.fq -o transcripts_quant</code></pre></li>
+</ol>
+<div class="notes">
+<ul>
+<li><p>The index is a structure that salmon uses to quasi-map RNA-seq reads during quantification</p></li>
+<li><p>The index need only be constructed once per transcriptome, and it can then be reused to quantify many experiments.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-8" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-8">Diversi Software</h2>
+<section id="allineamento-al-genoma-5" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-5">Allineamento al genoma</h3>
+<section id="salmon-2" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-2"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="alignment-based-mode" class="level4">
+<h4 class="anchored" data-anchor-id="alignment-based-mode">alignment-based mode</h4>
+<ol type="1">
+<li><p>Prepare your alignments using your favorite aligner</p></li>
+<li><p>Quantify using Salmon</p>
+<pre><code>&gt; salmon quant -t transcripts.fa.gz -l &lt;LIBTYPE&gt; -a aln.bam -o salmon_quant</code></pre></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="diversi-software-9" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-9">Diversi Software</h2>
+<section id="allineamento-al-genoma-6" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-6">Allineamento al genoma</h3>
+<section id="salmon-3" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-3"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="fragment-library-types" class="level4">
+<h4 class="anchored" data-anchor-id="fragment-library-types">Fragment Library Types</h4>
+<ol type="1">
+<li><p>There are numerous library preparation protocols for RNA-seq</p></li>
+<li><p>The library type string consists of three parts:</p>
+<ul>
+<li><p>the relative orientation of the reads,</p></li>
+<li><p>the strandedness of the library,</p></li>
+<li><p>the directionality of the reads</p></li>
+</ul></li>
+</ol>
+<div class="notes">
+<p>1- that result in sequencing reads with different characteristics</p>
+<ul>
+<li><p>reads can be single end (only one side of a fragment is recorded as a read) or paired-end (reads are generated from both ends of a fragment)</p></li>
+<li><p>the sequencing reads themselves may be unstranded or strand-specific</p></li>
+<li><p>paired-end protocols will have a specified relative orientation</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-10" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-10">Diversi Software</h2>
+<section id="allineamento-al-genoma-7" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-7">Allineamento al genoma</h3>
+<section id="salmon-4" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-4"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="fragment-library-types-1" class="level4">
+<h4 class="anchored" data-anchor-id="fragment-library-types-1">Fragment Library Types</h4>
+<div class="p-img-center">
+<p><img src="images/frag.png" class="img-fluid" width="800"></p>
+</div>
+<div class="notes">
+<ul>
+<li><p>The first part of the library string (relative orientation) is only provided if the library is paired-end</p>
+<ul>
+<li>I = inward<br>
+</li>
+<li>O = outward<br>
+</li>
+<li>M = matching</li>
+</ul></li>
+<li><p>The second part of the read library string specifies whether the protocol is stranded or unstranded</p>
+<ul>
+<li>S = stranded<br>
+</li>
+<li>U = unstranded</li>
+</ul></li>
+<li><p>The final part of the library string specifies the strand from which the read originates in a strand-specific protocol — it is only provided if the library is stranded</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-11" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-11">Diversi Software</h2>
+<section id="allineamento-al-genoma-8" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-8">Allineamento al genoma</h3>
+<section id="salmon-5" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-5"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="salmon-output-file-formats" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-output-file-formats">Salmon Output File Formats</h4>
+<div class="p-img-center">
+<p><img src="images/salm1.png" class="img-fluid" width="500"></p>
+</div>
+<div class="notes">
+<ol type="1">
+<li><p>Salmon’s main output is its quantification file =&gt; quant.sf</p></li>
+<li><p>cmd_info.json. This is a JSON format file that records the main command line parameters with which Salmon was invoked</p></li>
+<li><p>Auxiliary files: The top-level quantification directory will contain an auxiliary directory called aux_info</p>
+<ul>
+<li><p>The auxiliary directory will contain a JSON format file called meta_info.json which contains meta information about the run, including stats such as the number of observed and mapped fragments</p></li>
+<li><p>If Salmon was run with automatic inference of the library type, information contained in this file is the inferred library type</p></li>
+</ul></li>
+<li><p>When run in mapping-based mode, the quantification directory will contain a file called lib_format_counts.json. This JSON file reports the number of fragments that had at least one mapping compatible with the designated library format</p></li>
+</ol>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-12" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-12">Diversi Software</h2>
+<section id="allineamento-al-genoma-9" class="level3">
+<h3 class="anchored" data-anchor-id="allineamento-al-genoma-9">Allineamento al genoma</h3>
+<section id="salmon-6" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-6"><a href="https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon">Salmon</a></h4>
+<hr>
+</section>
+<section id="salmon-output-file-formats-1" class="level4">
+<h4 class="anchored" data-anchor-id="salmon-output-file-formats-1">Salmon Output File Formats</h4>
+<div class="f30">
+<ul>
+<li><p><strong>Name</strong> — This is the name of the target transcript provided in the input transcript database (FASTA file).</p></li>
+<li><p><strong>Length</strong> — This is the length of the target transcript in nucleotides.</p></li>
+<li><p><strong>EffectiveLength</strong> — This is the computed effective length of the target transcript. It takes into account all factors being modeled that will effect the probability of sampling fragments from this transcript, including the fragment length distribution and sequence-specific and gc-fragment bias (if they are being modeled).</p></li>
+<li><p><strong>TPM</strong> — This is salmon’s estimate of the relative abundance of this transcript in units of Transcripts Per Million (TPM). TPM is the recommended relative abundance measure to use for downstream analysis.</p></li>
+<li><p><strong>NumReads</strong> — This is salmon’s estimate of the number of reads mapping to each transcript that was quantified. It is an “estimate” insofar as it is the expected number of reads that have originated from each transcript given the structure of the uniquely mapping and multi-mapping reads and the relative abundance estimates for each transcript.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-13" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-13">Diversi Software</h2>
+<section id="differential-gene-expression-dge" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The goal of differential expression testing is to determine which genes are expressed at different levels between conditions.</p>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<div class="f20">
+<p>These tools perform normalization and calculate the abundance of each gene expressed in a sample:</p>
+<ul>
+<li><strong>ABSSeq</strong> a new RNA-Seq analysis method based on modelling absolute expression differences.</li>
+<li><strong>ALDEx2</strong> is a tool for comparative analysis of high-throughput sequencing data. ALDEx2 uses compositional data analysis and can be applied to RNAseq, 16S rRNA gene sequencing, metagenomic sequencing, and selective growth experiments.</li>
+<li><strong>Alexa-Seq</strong> is a pipeline that makes possible to perform gene expression analysis, transcript specific expression analysis, exon junction expression and quantitative alternative analysis. Allows wide alternative expression visualization, statistics and graphs.</li>
+<li><strong>ARH-seq</strong> – identification of differential splicing in RNA-seq data.</li>
+<li><strong>ASC[56] -</strong> Ballgown</li>
+<li><strong>BaySeq</strong> is a Bioconductor package to identify differential expression using next-generation sequencing data, via empirical Bayesian methods. There is an option of using the “snow” package for parallelisation of computer data processing, recommended when dealing with large data sets.</li>
+<li><strong>GMNB[57]</strong> is a Bayesian method to temporal gene differential expression analysis across different phenotypes or treatment conditions that naturally handles the heterogeneity of sequencing depth in different samples, removing the need for ad-hoc normalization.</li>
+<li><strong>BBSeq -</strong> BitSeq (Bayesian Inference of Transcripts from Sequencing Data) is an application for inferring expression levels of individual transcripts from sequencing (RNA-Seq) data and estimating differential expression (DE) between conditions.</li>
+<li><strong>CEDER</strong> Accurate detection of differentially expressed genes by combining significance of exons using RNA-Seq.</li>
+<li><strong>CPTRA</strong> The CPTRA package is for analyzing transcriptome sequencing data from different sequencing platforms. It combines advantages of 454, Illumina GAII, or other platforms and can perform sequence tag alignment and annotation, expression quantification tasks.</li>
+<li><strong>casper</strong> is a Bioconductor package to quantify expression at the isoform level. It combines using informative data summaries, flexible estimation of experimental biases and statistical precision considerations which (reportedly) provide substantial reductions in estimation error.</li>
+<li><strong>Cufflinks/Cuffdiff</strong> is appropriate to measure global de novo transcript isoform expression. It performs assembly of transcripts, estimation of abundances and determines differential expression (Cuffdiff) and regulation in RNA-Seq samples.[58]</li>
+<li><strong>DESeq</strong> is a Bioconductor package to perform differential gene expression analysis based on negative binomial distribution.</li>
+<li><strong>DEGSeq -</strong> Derfinder Annotation-agnostic differential expression analysis of RNA-seq data at base-pair resolution via the DER Finder approach.</li>
+<li><strong>DEvis</strong> is a powerful, integrated solution for the analysis of differential expression data. Using DESeq2 as a framework, DEvis provides a wide variety of tools for data manipulation, visualization, and project management.</li>
+<li><strong>DEXSeq</strong> is Bioconductor package that finds differential differential exon usage based on RNA-Seq exon counts between samples. DEXSeq employs negative binomial distribution, provides options to visualization and exploration of the results.</li>
+<li><strong>DEXUS</strong> is a Bioconductor package that identifies differentially expressed genes in RNA-Seq data under all possible study designs such as studies without replicates, without sample groups, and with unknown conditions.[59] In contrast to other methods, DEXUS does not need replicates to detect differentially expressed transcripts, since the replicates (or conditions) are estimated by the EM method for each transcript.</li>
+<li><strong>DGEclust</strong> is a Python package for clustering expression data from RNA-seq, CAGE and other NGS assays using a Hierarchical Dirichlet Process Mixture Model. The estimated cluster configurations can be post-processed in order to identify differentially expressed genes and for generating gene- and sample-wise dendrograms and heatmaps.[60]</li>
+<li><strong>DiffSplice</strong> is a method for differential expression detection and visualization, not dependent on gene annotations. This method is supported on identification of alternative splicing modules (ASMs) that diverge in the different isoforms. A non-parametric test is applied to each ASM to identify significant differential transcription with a measured false discovery rate.</li>
+<li><strong>EBSeq</strong> is a Bioconductor package for identifying genes and isoforms differentially expressed (DE) across two or more biological conditions in an RNA-seq experiment. It also can be used to identify DE contigs after performing de novo transcriptome assembly. While performing DE analysis on isoforms or contigs, different isoform/contig groups have varying estimation uncertainties. EBSeq models the varying uncertainties using an empirical Bayes model with different priors.</li>
+<li><strong>EdgeR</strong> is a R package for analysis of differential expression of data from DNA sequencing methods, like RNA-Seq, SAGE or ChIP-Seq data. edgeR employs statistical methods supported on negative binomial distribution as a model for count variability.</li>
+<li><strong>EdgeRun</strong> an R package for sensitive, functionally relevant differential expression discovery using an unconditional exact test.</li>
+<li><strong>EQP</strong> The exon quantification pipeline (EQP): a comprehensive approach to the quantification of gene, exon and junction expression from RNA-seq data.</li>
+<li><strong>ESAT</strong> The End Sequence Analysis Toolkit (ESAT) is specially designed to be applied for quantification of annotation of specialized RNA-Seq gene libraries that target the 5’ or 3’ ends of transcripts.</li>
+<li><strong>eXpress</strong> performance includes transcript-level RNA-Seq quantification, allele-specific and haplotype analysis and can estimate transcript abundances of the multiple isoforms present in a gene. Although could be coupled directly with aligners (like Bowtie), eXpress can also be used with de novo assemblers and thus is not needed a reference genome to perform alignment. It runs on Linux, Mac and Windows.</li>
+<li><strong>ERANGE</strong> performs alignment, normalization and quantification of expressed genes.</li>
+<li><strong>featureCounts</strong> an efficient general-purpose read quantifier.</li>
+<li><strong>FDM -</strong> FineSplice Enhanced splice junction detection and estimation from RNA-Seq data.</li>
+<li><strong>GFOLD[61]</strong> Generalized fold change for ranking differentially expressed genes from RNA-seq data.</li>
+<li><strong>globalSeq[62]</strong> Global test for counts: testing for association between RNA-Seq and high-dimensional data.</li>
+<li><strong>GPSeq</strong> This is a software tool to analyze RNA-seq data to estimate gene and exon expression, identify differentially expressed genes, and differentially spliced exons.</li>
+<li><strong>IsoDOT</strong> – Differential RNA-isoform Expression.</li>
+<li><strong>Limma</strong> Limma powers differential expression analyses for RNA-sequencing and microarray studies.</li>
+<li><strong>LPEseq</strong> accurately test differential expression with a limited number of replicates.</li>
+<li><strong>Kallisto</strong> “Kallisto is a program for quantifying abundances of transcripts from RNA-Seq data, or more generally of target sequences using high-throughput sequencing reads. It is based on the novel idea of pseudoalignment for rapidly determining the compatibility of reads with targets, without the need for alignment. On benchmarks with standard RNA-Seq data, kallisto can quantify 30 million human reads in less than 3 minutes on a Mac desktop computer using only the read sequences and a transcriptome index that itself takes less than 10 minutes to build.”</li>
+<li><strong>MATS</strong> Multivariate Analysis of Transcript Splicing (MATS).</li>
+<li><strong>MAPTest</strong> provides a general testing framework for differential expression analysis of RNA-Seq time course experiment. Method of the pack is based on latent negative-binomial Gaussian mixture model. The proposed test is optimal in the maximum average power. The test allows not only identification of traditional DE genes but also testing of a variety of composite hypotheses of biological interest.[63]</li>
+<li><strong>MetaDiff</strong> Differential isoform expression analysis using random-effects meta-regression.</li>
+<li><strong>metaseqR</strong> is a Bioconductor package that detects differentially expressed genes from RNA-Seq data by combining six statistical algorithms using weights estimated from their performance with simulated data estimated from real data, either public or user-based. In this way, metaseqR optimizes the tradeoff between precision and sensitivity.[64] In addition, metaseqR creates a detailed and interactive report with a variety of diagnostic and exploration plots and auto-generated text.</li>
+<li><strong>MMSEQ</strong> is a pipeline for estimating isoform expression and allelic imbalance in diploid organisms based on RNA-Seq. The pipeline employs tools like Bowtie, TopHat, ArrayExpressHTS and SAMtools. Also, edgeR or DESeq to perform differential expression.</li>
+<li><strong>MultiDE -</strong> Myrna is a pipeline tool that runs in a cloud environment (Elastic MapReduce) or in a unique computer for estimating differential gene expression in RNA-Seq datasets. Bowtie is employed for short read alignment and R algorithms for interval calculations, normalization, and statistical processing.</li>
+<li><strong>NEUMA</strong> is a tool to estimate RNA abundances using length normalization, based on uniquely aligned reads and mRNA isoform models. NEUMA uses known transcriptome data available in databases like RefSeq.</li>
+<li><strong>NOISeq</strong> NOISeq is a non-parametric approach for the identification of differentially expressed genes from count data or previously normalized count data. NOISeq empirically models the noise distribution of count changes by contrasting fold-change differences (M) and absolute expression differences (D) for all the features in samples within the same condition.</li>
+<li><strong>NPEBseq</strong> is a nonparametric empirical Bayesian-based method for differential expression analysis.</li>
+<li><strong>NSMAP</strong> allows inference of isoforms as well estimation of expression levels, without annotated information. The exons are aligned and splice junctions are identified using TopHat. All the possible isoforms are computed by a combination of the detected exons.</li>
+<li><strong>NURD</strong> an implementation of a new method to estimate isoform expression from non-uniform RNA-seq data.</li>
+<li><strong>PANDORA</strong> An R package for the analysis and result reporting of RNA-Seq data by combining multiple statistical algorithms.</li>
+<li><strong>PennSeq</strong> PennSeq: accurate isoform-specific gene expression quantification in RNA-Seq by modeling non-uniform read distribution.</li>
+<li><strong>QuasR</strong> Quantify and Annotate Short Reads in R.</li>
+<li><strong>RapMap</strong> A Rapid, Sensitive and Accurate Tool for Mapping RNA-seq Reads to Transcriptomes.</li>
+<li><strong>recursiveCorPlot</strong> Correlation based clustering for RNA-seq data (+ ggplot corrplot-like interface - R-package: recursiveCorPlot).[65]</li>
+<li><strong>RNAeXpress</strong> Can be run with Java GUI or command line on Mac, Windows, and Linux. It can be configured to perform read counting, feature detection or GTF comparison on mapped rnaseq data.</li>
+<li><strong>Rcount</strong> Rcount: simple and flexible RNA-Seq read counting.</li>
+<li><strong>rDiff</strong> is a tool that can detect differential RNA processing (e.g.&nbsp;alternative splicing, polyadenylation or ribosome occupancy).</li>
+<li><strong>RNASeqPower</strong> Calculating samples Size estimates for RNA Seq studies. R package version.</li>
+<li><strong>RNA-Skim</strong> RNA-Skim: a rapid method for RNA-Seq quantification at transcript-level.</li>
+<li><strong>rSeq</strong> rSeq is a set of tools for RNA-Seq data analysis. It consists of programs that deal with many aspects of RNA-Seq data analysis, such as read quality assessment, reference sequence generation, sequence mapping, gene and isoform expressions (RPKMs) estimation, etc.</li>
+<li><strong>RSEM -</strong> rQuant is a web service (Galaxy (computational biology) installation) that determines abundances of transcripts per gene locus, based on quadratic programming. rQuant is able to evaluate biases introduced by experimental conditions. A combination of tools is employed: PALMapper (reads alignment), mTiM and mGene (inference of new transcripts).</li>
+<li><strong>Salmon</strong> is a software tool for computing transcript abundance from RNA-seq data using either an alignment-free (based directly on the raw reads) or an alignment-based (based on pre-computed alignments) approach. It uses an online stochastic optimization approach to maximize the likelihood of the transcript abundances under the observed data. The software itself is capable of making use of many threads to produce accurate quantification estimates quickly. It is part of the Sailfish suite of software, and is the successor to the Sailfish tool.</li>
+<li><strong>SAJR</strong> is a java-written read counter and R-package for differential splicing analysis. It uses junction reads to estimate exon exclusion and reads mapped within exon to estimate its inclusion. SAJR models it by GLM with quasibinomial distribution and uses log likelihood test to assess significance.</li>
+<li><strong>Scotty</strong> Performs power analysis to estimate the number of replicates and depth of sequencing required to call differential expression.</li>
+<li><strong>Seal</strong> alignment-free algorithm to quantify sequence expression by matching kmers between raw reads and a reference transcriptome. Handles paired reads and alternate isoforms, and uses little memory. Accepts all common read formats, and outputs read counts, coverage, and FPKM values per reference sequence. Open-source, written in pure Java; supports all platforms with no recompilation and no other dependencies. Distributed with BBMap. (Seal - Sequence Expression AnaLyzer - is unrelated to the SEAL distributed short-read aligner.)</li>
+<li><strong>semisup[66]</strong> Semi-supervised mixture model: detecting SNPs with interactive effects on a quantitative trait</li>
+<li><strong>Sleuth</strong> is a program for analysis of RNA-Seq experiments for which transcript abundances have been quantified with kallisto.</li>
+<li><strong>SplicingCompass</strong> differential splicing detection using RNA-Seq data.</li>
+<li><strong>sSeq</strong> The purpose of this R package is to discover the genes that are differentially expressed between two conditions in RNA-seq experiments.</li>
+<li><strong>StringTie</strong> is an assembler of RNA-Seq alignments into potential transcripts. It uses a novel network flow algorithm as well as an optional de novo assembly step to assemble and quantitate full-length transcripts representing multiple splice variants for each gene locus. It was designed as a successor to Cufflinks (its developers include some of the Cufflinks developers) and has many of the same features.</li>
+<li><strong>TIGAR</strong> Transcript isoform abundance estimation method with gapped alignment of RNA-Seq data by variational Bayesian inference.</li>
+<li><strong>TimeSeq</strong> Detecting Differentially Expressed Genes in Time Course RNA-Seq Data.</li>
+<li><strong>TPMCalculator[67]</strong> one-step software to quantify mRNA abundance of genomic features.</li>
+<li>WemIQ is a software tool to quantify isoform expression and exon splicing ratios from RNA-seq data accurately and robustly.</li>
+</ul>
+<p>From: https://en.wikipedia.org/wiki/List_of_RNA-Seq_bioinformatics_tools</p>
+</div>
+</div>
+</section>
+</section>
+<section id="diversi-software-14" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-14">Diversi Software</h2>
+<section id="differential-gene-expression-dge-1" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-1">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<p>The count data used for DGE represents the number of sequence reads that originated from a particular gene.</p>
+<div class="p-img-center">
+<p><img src="images/count.png" class="img-fluid" width="1200"></p>
+</div>
+</section>
+</section>
+<section id="diversi-software-15" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-15">Diversi Software</h2>
+<section id="differential-gene-expression-dge-2" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-2">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="normalization" class="level4">
+<h4 class="anchored" data-anchor-id="normalization">Normalization</h4>
+<p>The count data needs to be normalized to account for differences in <strong>library sizes</strong> and <strong>RNA composition</strong> between samples</p>
+<div class="fragment">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Normalization is essential for <strong>differential expression analyses</strong>, and also for <strong>exploratory data analysis</strong>, <strong>visualization of data</strong>, and whenever you are exploring or comparing counts between or within samples</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-16" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-16">Diversi Software</h2>
+<section id="differential-gene-expression-dge-3" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-3">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="normalization-1" class="level4">
+<h4 class="anchored" data-anchor-id="normalization-1">Normalization</h4>
+<div class="f25">
+<table class="table">
+<tbody>
+<tr class="odd">
+<td><strong>Normalization method</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Accounted factors</strong></td>
+<td><strong>Recommendations for use</strong></td>
+</tr>
+<tr class="even">
+<td><strong>CPM</strong> (counts per million)</td>
+<td>counts scaled by total number of reads</td>
+<td>sequencing depth</td>
+<td>gene count comparisons between replicates of the same samplegroup; <strong>NOT for within sample comparisons or DE analysis</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>TPM</strong> (transcripts per kilobase million)</td>
+<td>counts per length of transcript (kb) per million reads mapped</td>
+<td>sequencing depth and gene length</td>
+<td>gene count comparisons within a sample or between samples of the same sample group; <strong>NOT for DE analysis</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RPKM/FPKM</strong> (reads/fragments per kilobase of exon per million reads/fragments mapped)</td>
+<td>similar to TPM</td>
+<td>sequencing depth and gene length</td>
+<td>gene count comparisons between genes within a sample; <strong>NOT for between sample comparisons or DE analysis</strong></td>
+</tr>
+<tr class="odd">
+<td>DESeq2’s <strong>median of ratios</strong> [<a href="https://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-10-r106">1</a>]</td>
+<td>counts divided by sample-specific size factors determined by median ratio of gene counts relative to geometric mean per gene</td>
+<td>sequencing depth and RNA composition</td>
+<td>gene count comparisons between samples and for <strong>DE analysis</strong>; <strong>NOT for within sample comparisons</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-17" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-17">Diversi Software</h2>
+<section id="differential-gene-expression-dge-4" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-4">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="quality-control-at-sample-level" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-at-sample-level">Quality Control at SAMPLE level</h4>
+<div class="{incremental}">
+<ul>
+<li><p>Which samples are similar to each other, which are different?</p></li>
+<li><p>Does this fit to the expectation from the experiment’s design?</p></li>
+<li><p>What are the major sources of variation in the dataset?</p></li>
+</ul>
+</div>
+<div class="notes">
+<ul>
+<li><p>ensure that the samples/replicates look good</p></li>
+<li><p>Sample-level QC allows us to see how well our replicates cluster together</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-18" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-18">Diversi Software</h2>
+<section id="differential-gene-expression-dge-5" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-5">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="quality-control-at-sample-level-1" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-at-sample-level-1">Quality Control at SAMPLE level</h4>
+<ul>
+<li><p>Log2-transformed normalized counts are used to assess similarity between samples using:</p>
+<ul>
+<li>Principal Component Analysis (PCA)<br>
+</li>
+<li>Hierarchical clustering</li>
+</ul></li>
+</ul>
+<div class="p-img-center">
+<p><img src="images/pcahc.png" class="img-fluid" width="1000"></p>
+</div>
+<div class="notes">
+<ul>
+<li>Using log2 transformation, tools aim to moderate the variance across the mean</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-19" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-19">Diversi Software</h2>
+<section id="differential-gene-expression-dge-6" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-6">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="quality-control-at-gene-level" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-at-gene-level">Quality Control at GENE level</h4>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed</p>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li><p>Genes with zero counts in all samples</p></li>
+<li><p>Genes with an extreme count outlier</p></li>
+<li><p>Genes with a low mean normalized counts</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-20" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-20">Diversi Software</h2>
+<section id="differential-gene-expression-dge-7" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-7">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="quality-control-at-gene-level-1" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-at-gene-level-1">Quality Control at GENE level</h4>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed</p>
+</div>
+</div>
+<div class="p-img-center">
+<p><img src="images/gele.png" class="img-fluid" width="1200"></p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-21" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-21">Diversi Software</h2>
+<section id="differential-gene-expression-dge-8" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-8">Differential Gene Expression (DGE)</h3>
+<p><br></p>
+<section id="quality-control-at-gene-level-2" class="level4">
+<h4 class="anchored" data-anchor-id="quality-control-at-gene-level-2">Quality Control at GENE level</h4>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed</p>
+</div>
+</div>
+<p><br> <br></p>
+<div class="f60 tcenter">
+<p><strong>DESeq2</strong> will perform this filtering by default,</p>
+<p>however other DE tools will not</p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-22" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-22">Diversi Software</h2>
+<section id="differential-gene-expression-dge-9" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-9">Differential Gene Expression (DGE)</h3>
+<section id="deseq2" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="modeling-raw-count-for-each-gene" class="level4">
+<h4 class="anchored" data-anchor-id="modeling-raw-count-for-each-gene">Modeling raw count for each gene</h4>
+<div class="p-img-center">
+<p><img src="images/rawc.png" class="img-fluid" width="700"></p>
+</div>
+<div class="notes">
+<p>These images illustrate some common features of RNA-seq count data:</p>
+<ul>
+<li><p>a low number of counts associated with a large proportion of genes</p></li>
+<li><p>a long right tail due to the lack of any upper limit for expression</p></li>
+<li><p>large dynamic range</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-23" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-23">Diversi Software</h2>
+<section id="differential-gene-expression-dge-10" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-10">Differential Gene Expression (DGE)</h3>
+<section id="deseq2-1" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2-1"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="modeling-raw-count-for-each-gene-1" class="level4">
+<h4 class="anchored" data-anchor-id="modeling-raw-count-for-each-gene-1">Modeling raw count for each gene</h4>
+<div class="p-img-center">
+<p><img src="images/AH-noNorm.png" class="img-fluid" width="900"></p>
+</div>
+<div class="notes">
+<ul>
+<li><p>RNASeq data are non-normally distributed data</p></li>
+<li><p>the normal distribution does not accurately model RNA-seq counts</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-24" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-24">Diversi Software</h2>
+<section id="differential-gene-expression-dge-11" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-11">Differential Gene Expression (DGE)</h3>
+<section id="deseq2-2" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2-2"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="modeling-raw-count-for-each-gene-2" class="level4">
+<h4 class="anchored" data-anchor-id="modeling-raw-count-for-each-gene-2">Modeling raw count for each gene</h4>
+<p><br> <br></p>
+<div class="f60 tcenter">
+<p>So what do we use for RNA-seq count data?</p>
+</div>
+<div class="notes">
+<p>Count data in general can be modeled with various distributions:</p>
+<ul>
+<li><p><strong>Binomial distribution</strong>: Gives you the probability of getting a number of heads upon tossing a coin a number of times. Based on discrete events and used in situations when you have a certain number of cases.</p></li>
+<li><p><strong>Poisson distribution</strong>: For use, when the number of cases is very large (i.e.&nbsp;people who buy lottery tickets), but the probability of an event is very small (probability of winning). The Poisson is similar to the binomial, but is based on continuous events. Appropriate for data where mean == variance.</p></li>
+<li><p><strong>Negative binomial distribution</strong>: An approximation of the Poisson, but has an additional parameter that adjusts the variance independently from the mean.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-25" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-25">Diversi Software</h2>
+<section id="differential-gene-expression-dge-12" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-12">Differential Gene Expression (DGE)</h3>
+<section id="deseq2-3" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2-3"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="modeling-raw-count-for-each-gene-3" class="level4">
+<h4 class="anchored" data-anchor-id="modeling-raw-count-for-each-gene-3">Modeling raw count for each gene</h4>
+<p><br> <br></p>
+<div class="f60 tcenter">
+<p><strong>DESeq2</strong> uses the negative binomial model</p>
+</div>
+<hr>
+<div class="tit">
+<p>“All models are wrong, but some are useful”.</p>
+</div>
+<div style="font-size: 30px; text-align: right">
+<p>George E. P. Box</p>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-26" class="level2">
+<h2 class="anchored" data-anchor-id="diversi-software-26">Diversi Software</h2>
+<section id="differential-gene-expression-dge-13" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-13">Differential Gene Expression (DGE)</h3>
+<section id="deseq2-4" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2-4"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="the-deseqdataset" class="level4">
+<h4 class="anchored" data-anchor-id="the-deseqdataset">The DESeqDataSet</h4>
+<div class="p-img-center">
+<p><img src="images/sexp.png" class="img-fluid" width="650"></p>
+</div>
+<div class="notes">
+<ul>
+<li><p>DESeqDataSet class extends the RangedSummarizedExperiment class of the SummarizedExperiment package</p></li>
+<li><p>The “Ranged” part refers to the fact that the rows of the assay data (here, the counts) can be associated with genomic ranges</p></li>
+</ul>
+<hr>
+<ul>
+<li><p>A DESeqDataSet object must have an associated design formula</p></li>
+<li><p>The design formula expresses the variables which will be used in modeling</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="diversi-software-27" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="diversi-software-27">Diversi Software</h2>
+<section id="differential-gene-expression-dge-14" class="level3">
+<h3 class="anchored" data-anchor-id="differential-gene-expression-dge-14">Differential Gene Expression (DGE)</h3>
+<section id="deseq2-5" class="level4">
+<h4 class="anchored" data-anchor-id="deseq2-5"><a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a></h4>
+<p><br></p>
+</section>
+<section id="summarisedexperiment" class="level4">
+<h4 class="anchored" data-anchor-id="summarisedexperiment">SummarisedExperiment</h4>
+<pre><code>nrows &lt;- 200
+ncols &lt;- 6
+counts &lt;- matrix(runif(nrows * ncols, 1, 1e4), nrows)
+rowRanges &lt;- GRanges(rep(c("chr1", "chr2"), c(50, 150)),
+                     IRanges(floor(runif(200, 1e5, 1e6)), width=100),
+                     strand=sample(c("+", "-"), 200, TRUE),
+                     feature_id=sprintf("ID%03d", 1:200))
+colData &lt;- DataFrame(Treatment=rep(c("ChIP", "Input"), 3),
+                     row.names=LETTERS[1:6])
+
+se &lt;- SummarizedExperiment(assays=list(counts=counts),
+                     rowRanges=rowRanges, colData=colData)
+
+assay(se)
+rowData(se)
+rowRanges(se)
+colData(se)
+
+rowData(se)$marco &lt;- FALSE
+rowData(se)$marco[c(1,2,5,200)] &lt;- TRUE
+assay(se[rowData(se)$marco == TRUE, ])
+colData(se[,colData(se)$Treatment == "Input"])
+
+se[rowData(se)$marco == TRUE, colData(se)$Treatment == "Input"]</code></pre>
+</section>
+</section>
+</section>
+</section>
+<section id="section" class="level1" data-background-image="images/qmark.jpg" data-background-size="cover" data-background-opacity="0.7">
+<h1 data-background-image="images/qmark.jpg" data-background-size="cover" data-background-opacity="0.7"></h1>
+<div style="position: absolute; left: 980px; top: 450px;">
+<p><span style="font-size: 130px; font-weight: bold; color: white">Domande?</span></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">This page was built with ❤️, <a href="https://cran.r-project.org">R</a> and <a href="https://quarto.org/">Quarto</a> by Marco Chiapello.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

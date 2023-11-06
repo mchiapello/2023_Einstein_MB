@@ -6,15 +6,15 @@ project:
     - "!materials/workshop/"
 
 website:
-  title: "Introduzione ad R"
+  title: "Biology 101"
   twitter-card:
     card-style: summary_large_image
-    description: "Corso Revelo - Intro2R"
+    description: "Biology 101"
   page-footer:
     left: "This page was built with ❤️, [R](https://cran.r-project.org) and [Quarto](https://quarto.org/) by Marco Chiapello."
   navbar:
     background: "#447099"
-    logo: "materials/images/revelo.png"
+    logo: "materials/images/albert.jpg"
     left:
       - text: Slides
         menu: 

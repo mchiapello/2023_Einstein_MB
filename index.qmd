@@ -8,66 +8,56 @@ editor:
   markdown: 
     wrap: 72
 ---
+![](materials/images/DNA.png)
 
+# Schedule
 
-### Syllabus
+| Date | Topic | Lesson | Reading | Assignment |
+|:----|:-----|:------:|:-------:|:----------:|
+| 15 Dec | Scientific method     | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 12 Jan | DNA (Lab)             | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 19 Jan | Biology Central Dogma | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 26 Jan | DNA technologies      | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 02 Feb | Bioinformatics (Lab)  | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 02 Feb | DNA Forensic          | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 16 Feb | Plant biology I       | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 23 Feb | Plant biology II      | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 01 Mar | Final exam            | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| 08 Mar | Plant biology III     | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
 
-#### Primo giorno
+# Instructor
 
-| Orario     | Tema                  |
-|------------|-----------------------|
-|9:30| [Introduzione al Corso](materials/M1_intro.qmd)   |
-|10:15| [Ricerca Riproducibile](https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1)       |
-|10:45| Pausa                   |
-|11:00| [Organizzazione dei dati](https://datacarpentry.org/spreadsheet-ecology-lesson/00-intro.html)|
-|12:30| Pausa pranzo            |
-|13:30| [Intro2R](materials/M3_introR.qmd)
-|14:45| Pausa                   |
-|15:00| [Starting with data](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html#creating-objects-in-r)|
-|16:30| Considerazioni finali   | 
+My name is Marco Chiapello ans I am currently working as Application Engineer at Agilent Technologies in Diagnostics & Genomics Group. My daily focus is on secondary analysis and customer care. I am a big supporter of reproducible and open research. My main tools are R, git, vim and docker. I am a curious person and a dedicated worker, I love the challenges of computational biology and teaching the principle of data analysis and visualization.
 
+# Website
 
+The syllabus and other relevant class information and resources will be posted at HERE. 
+Changes to the schedule will be posted to this site so please try to check it periodically for updates.
 
-#### Secondo giorno
+# Required Texts
+There is no required text book for this class.
 
-| Orario     | Tema                  |
-|------------|-----------------------|
-|9:30  | Riepilogo giorno precedente| 
-|9:45  | The dplyr package (parte I)|
-|10:45 | Pausa                  | 
-|11:00 | The dplyr package (parte II)|
-|12:30 | Pausa pranzo           | 
-|13:30 | The ggplot2 package (parte I)      |
-|14:45 | Pausa                  | 
-|15:00 | The ggplot2 package (parte II)      |              
-|16:30 | Considerazioni finali  |
+All needed material is openly available on the course website. 
 
+# Course Description
 
-### Come installare i software necessari al corso
+# Course Objectives and Goals
 
-Per questo corso ci serviranno diversi software. Alcuni dei quali possono essere
-usati indistintamente su diversi sistemi operativi, altri invece no. Di seguito troverete
-le istruzioni per installare i software necessari sul vostro computer.
+# Teaching Philosophy
+I have 3 goals:     
+- Motivate students to study.    
+- Increase the use of effective study and teaching strategies that are backed by research.    
+- Decrease negative views of testing.   
 
-#### R
+Based on [The Learning Scientists](https://www.learningscientists.org).
 
-Per installare R cliccate sul seguente [link](https://cran.r-project.org) e seguite le istruzioni per il vostro sistema operativo.
+# Code of Conduct
 
-#### RStudio
+I am dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity. By participating in this class, participants accept to abide by teacher' Code of Conduct and accept the procedures by which any Code of Conduct incidents are resolved. Any form of behaviour to exclude, intimidate, or cause discomfort is a violation of the Code of Conduct. In order to foster a positive and professional learning environment I encourage the following kinds of behaviours in all platforms and events:
 
-Per installare RStudio cliccate sul seguente [link](https://posit.co/download/rstudio-desktop/) e seguite le istruzioni per il vostro sistema operativo.
+- Use welcoming and inclusive language
+- Be respectful of different viewpoints and experiences
+- Gracefully accept constructive criticism
+- Focus on what is best for the community
+- Show courtesy and respect towards other community members
 
-#### Slack
-Seguire il [link](https://revelotraining.slack.com/archives/C05070Z7ET0) per iscriversi al canale Slack del corso
-
-### Docente
-
-Marco Chiapello è un bioinformatico con lunga esperieza di utilizzo di R
-e Bioconductor. Dal 2016 è un istruttore certificato per
-l'organizzazione internazionale [The
-Carpentries](https://carpentries.org) con la quale ha insegnato negli
-ultimi anni più di 10 corsi in varie università Europee di analisi dati
-con R. Dal 2015 insegna il corso PhD ToolBox presso l'Università degli
-Studi di Torino. Attualmente è Application Engineer presso [Agilent
-Technologies](https://www.agilent.com) nella divisione "Diagnostics &
-Genomics".
