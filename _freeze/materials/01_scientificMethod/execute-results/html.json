@@ -1,0 +1,16 @@
+{
+  "hash": "40845d6d9b4d872b61ef2ebfee7f084a",
+  "result": {
+    "markdown": "---\nformat: \n  revealjs:\n    navigation-mode: vertical\n    slide-number: false\n    width: 1600\n    height: 900\n    logo: \"images/albert.jpg\"\n    footer: \"[home page](https://mchiapello.github.io/2023_Einstein_MB/)\"\n    css: [\"css/theme.css\", \"css/custom.css\"]\n    theme: simple\n    controls: true\neditor: source\nfilters:\n  - roughnotation\neditor_options: \n  chunk_output_type: inline\n---\n\n\n\n##  {#TitleSlide data-menu-title=\"TitleSlide\" background-image=\"images/back001.jpg\" background-size=\"cover\" background-opacity=\"0.3\"}\n\n\n\n\n\n\n\n<style>\n  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Julius+Sans+One&family=Montserrat:wght@300&family=Rock+Salt&display=swap');\n</style>\n\n::: {style=\"position: absolute; left: 180px; top: 200px; height: 400px; width: 1500px; background-color: #69b1e9; padding: 20px; padding-left: 50px; border-radius: 5px;\"}\n[Course Introduction]{style=\"font-size: 120px; font-weight: bold; line-height: 1em; margin: 0px; font-family: 'Architects Daughter', cursive;\"}\n\n<br> <br>\n\n[Marco Chiapello, PhD]{style=\"font-size: 40px; font-weight: bold;\"}\n\n[2023-12-15]{style=\"font-size: 30px;font-weight: bold;\"}\n:::\n\n#  {background-image=\"images/back002.jpg\" background-size=\"cover\" background-opacity=\"0.3\"}\n\n[Introduce ourself]{.tit .p-span-center}\n\n[{{< fa id-card >}}]{.icon .p-span-center}\n\n:::{.notes}\n- Introduce myself (long version)\n\n- Give 10 minutes to write down a short presentation of themself\n:::\n\n##  {background-image=\"images/website.png\" background-size=\"cover\" background-opacity=\"0.1\"}\n\n[Website]{.p-span-center style=\"font-size: 100px\"}\n\n\n\n::: {.cell layout-ncol=\"1\"}\n::: {.cell-output-display}\n![](01_scientificMethod_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n\n\n:::{.notes}\nExplain all the details on the website\n:::\n\n\n",
+    "supporting": [
+      "01_scientificMethod_files/figure-html"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

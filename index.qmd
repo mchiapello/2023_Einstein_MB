@@ -12,9 +12,9 @@ editor:
 
 # Schedule
 
-| Date | Topic | Lesson | Reading | Assignment |
-|:----|:-----|:------:|:-------:|:----------:|
-| 15 Dec | Scientific method     | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
+| Date | Topic | Lesson | Reading | Formative assignment |
+|:----|:-----|:------|:-------|:----------|
+| 15 Dec | Scientific method     |  Introduction: [{{< fa circle-play >}}](materials/static/Introduction.pdf) <br> Class: [{{< fa circle-play >}}](materials/static/Understanding the Scientific Method.pdf) | [{{< fa book >}}](https://scicomm.plos.org/2020/08/04/a-guide-to-using-the-scientific-method-in-everyday-life/) | [{{< fa keyboard >}}](https://forms.gle/QfGpEvhDwtAgC1fW8) |
 | 12 Jan | DNA (Lab)             | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
 | 19 Jan | Biology Central Dogma | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
 | 26 Jan | DNA technologies      | [{{< fa circle-play >}}]() | [{{< fa book >}}]() | [{{< fa keyboard >}}]() |
@@ -38,10 +38,6 @@ Changes to the schedule will be posted to this site so please try to check it pe
 There is no required text book for this class.
 
 All needed material is openly available on the course website. 
-
-# Course Description
-
-# Course Objectives and Goals
 
 # Teaching Philosophy
 I have 3 goals:     

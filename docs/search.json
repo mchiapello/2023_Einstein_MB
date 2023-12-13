@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Biology 101",
     "section": "",
-    "text": "Schedule\n\n\n\nDate\nTopic\nLesson\nReading\nAssignment\n\n\n\n\n15 Dec\nScientific method\n\n\n\n\n\n12 Jan\nDNA (Lab)\n\n\n\n\n\n19 Jan\nBiology Central Dogma\n\n\n\n\n\n26 Jan\nDNA technologies\n\n\n\n\n\n02 Feb\nBioinformatics (Lab)\n\n\n\n\n\n02 Feb\nDNA Forensic\n\n\n\n\n\n16 Feb\nPlant biology I\n\n\n\n\n\n23 Feb\nPlant biology II\n\n\n\n\n\n01 Mar\nFinal exam\n\n\n\n\n\n08 Mar\nPlant biology III\n\n\n\n\n\n\n\n\nInstructor\n\n\nWebsite\nThe syllabus and other relevant class information and resources will be posted at HERE. Changes to the schedule will be posted to this site so please try to check it periodically for updates.\n\n\nRequired Texts\nThere is no required text book for this class.\nAll needed material is openly available on the course website.\n\n\nCourse Description\n\n\nCourse Objectives and Goals\n\n\nTeaching Philosophy\nI have 3 goals:\n- Motivate students to study.\n- Increase the use of effective study and teaching strategies that are backed by research.\n- Decrease negative views of testing.\nBased on The Learning Scientists.\n\n\nCode of Conduct\nI am dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity. By participating in this class, participants accept to abide by teacher’ Code of Conduct and accept the procedures by which any Code of Conduct incidents are resolved. Any form of behaviour to exclude, intimidate, or cause discomfort is a violation of the Code of Conduct. In order to foster a positive and professional learning environment I encourage the following kinds of behaviours in all platforms and events:\n\nUse welcoming and inclusive language\nBe respectful of different viewpoints and experiences\nGracefully accept constructive criticism\nFocus on what is best for the community\nShow courtesy and respect towards other community members"
+    "text": "Schedule\n\n\n\nDate\nTopic\nLesson\nReading\nFormative assignment\n\n\n\n\n15 Dec\nScientific method\nIntroduction:   Class: \n\n\n\n\n12 Jan\nDNA (Lab)\n\n\n\n\n\n19 Jan\nBiology Central Dogma\n\n\n\n\n\n26 Jan\nDNA technologies\n\n\n\n\n\n02 Feb\nBioinformatics (Lab)\n\n\n\n\n\n02 Feb\nDNA Forensic\n\n\n\n\n\n16 Feb\nPlant biology I\n\n\n\n\n\n23 Feb\nPlant biology II\n\n\n\n\n\n01 Mar\nFinal exam\n\n\n\n\n\n08 Mar\nPlant biology III\n\n\n\n\n\n\n\n\nInstructor\nMy name is Marco Chiapello ans I am currently working as Application Engineer at Agilent Technologies in Diagnostics & Genomics Group. My daily focus is on secondary analysis and customer care. I am a big supporter of reproducible and open research. My main tools are R, git, vim and docker. I am a curious person and a dedicated worker, I love the challenges of computational biology and teaching the principle of data analysis and visualization.\n\n\nWebsite\nThe syllabus and other relevant class information and resources will be posted at HERE. Changes to the schedule will be posted to this site so please try to check it periodically for updates.\n\n\nRequired Texts\nThere is no required text book for this class.\nAll needed material is openly available on the course website.\n\n\nTeaching Philosophy\nI have 3 goals:\n- Motivate students to study.\n- Increase the use of effective study and teaching strategies that are backed by research.\n- Decrease negative views of testing.\nBased on The Learning Scientists.\n\n\nCode of Conduct\nI am dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity. By participating in this class, participants accept to abide by teacher’ Code of Conduct and accept the procedures by which any Code of Conduct incidents are resolved. Any form of behaviour to exclude, intimidate, or cause discomfort is a violation of the Code of Conduct. In order to foster a positive and professional learning environment I encourage the following kinds of behaviours in all platforms and events:\n\nUse welcoming and inclusive language\nBe respectful of different viewpoints and experiences\nGracefully accept constructive criticism\nFocus on what is best for the community\nShow courtesy and respect towards other community members"
   },
   {
     "objectID": "materials/static/vertical-align.html",
@@ -86,56 +86,56 @@
   {
     "objectID": "materials/risorse.html",
     "href": "materials/risorse.html",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "",
     "text": "Teaching material - from Laurent Gatto\nReproducible Research\nSoftware carpentry\nData carpentry"
   },
   {
     "objectID": "materials/risorse.html#repositories",
     "href": "materials/risorse.html#repositories",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "",
     "text": "Teaching material - from Laurent Gatto\nReproducible Research\nSoftware carpentry\nData carpentry"
   },
   {
     "objectID": "materials/risorse.html#books",
     "href": "materials/risorse.html#books",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Books:",
     "text": "Books:\n\nR bookdown - collaborative book website\nTidyverse Cookbook\nModern R"
   },
   {
     "objectID": "materials/risorse.html#papers",
     "href": "materials/risorse.html#papers",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Papers:",
     "text": "Papers:\n\nTen Simple Rules for Taking Advantage of Git and GitHub\nTen Simple Rules for Reproducible Computational Research\nThe Practice of Reproducible Research"
   },
   {
     "objectID": "materials/risorse.html#website",
     "href": "materials/risorse.html#website",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Website",
     "text": "Website\n\nTen simple rules\nPoints of significance\nReproducible research - CRAN Task View\nggplot2\nggplot2 gallery and examples\nTop 50 ggplot2 Visualizations\nR-bloggers\nOpen science website\nOpen-source guideline\nData science competions\nPaper with R code\nR code best pratices"
   },
   {
     "objectID": "materials/risorse.html#miscellaneous",
     "href": "materials/risorse.html#miscellaneous",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Miscellaneous",
     "text": "Miscellaneous\n\nReproducible research - Coursera course\nExercism - Level up your programming skills\nCodewars - Improve your skills by training with others on real code challenges\nBad publishing and bullied into bad science"
   },
   {
     "objectID": "materials/risorse.html#potentially-useful-r-packages",
     "href": "materials/risorse.html#potentially-useful-r-packages",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Potentially useful R packages",
     "text": "Potentially useful R packages\n\nesquisse\nggThemeAssistant\nSwirl - Learn R in R"
   },
   {
     "objectID": "materials/risorse.html#cheatsheets",
     "href": "materials/risorse.html#cheatsheets",
-    "title": "Introduzione ad R",
+    "title": "Biology 101",
     "section": "Cheatsheets",
     "text": "Cheatsheets\n\nUNIX\ndplyr\nggplot2\nRmarkdown\nGit\nVersion control workflow"
   },
@@ -187,5 +187,54 @@
     "title": "Introduzione ad R",
     "section": "",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\n\n\n\nAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+  },
+  {
+    "objectID": "materials/01_class.html#TitleSlide",
+    "href": "materials/01_class.html#TitleSlide",
+    "title": "Biology 101",
+    "section": "",
+    "text": "Course Introduction\n \nMarco Chiapello, PhD\n2023-12-15"
+  },
+  {
+    "objectID": "materials/01_class.html#section-1",
+    "href": "materials/01_class.html#section-1",
+    "title": "Biology 101",
+    "section": "",
+    "text": "Website\n\n\n\n\n\n\n\n\nhttps://bit.ly/421L9cp"
+  },
+  {
+    "objectID": "materials/01_class.html#section-2",
+    "href": "materials/01_class.html#section-2",
+    "title": "Biology 101",
+    "section": "",
+    "text": "Agenda\n\n\n\nhome page"
+  },
+  {
+    "objectID": "materials/01_scientificMethod.html#TitleSlide",
+    "href": "materials/01_scientificMethod.html#TitleSlide",
+    "title": "",
+    "section": "",
+    "text": "Course Introduction\n \nMarco Chiapello, PhD\n2023-12-15"
+  },
+  {
+    "objectID": "materials/01_scientificMethod.html#section-1",
+    "href": "materials/01_scientificMethod.html#section-1",
+    "title": "",
+    "section": "",
+    "text": "Website\n\n\n\n\n\n\n\n\nExplain all the details on the website"
+  },
+  {
+    "objectID": "materials/01_scientificMethod.html#section-2",
+    "href": "materials/01_scientificMethod.html#section-2",
+    "title": "Biology 101",
+    "section": "",
+    "text": "Agenda\n\n\n\nhome page"
+  },
+  {
+    "objectID": "materials/01_scientificMethod.html",
+    "href": "materials/01_scientificMethod.html",
+    "title": "",
+    "section": "",
+    "text": "Course Introduction\n \nMarco Chiapello, PhD\n2023-12-15"
   }
 ]

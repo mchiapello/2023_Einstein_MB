@@ -1,0 +1,72 @@
+---
+format: 
+  revealjs:
+    navigation-mode: vertical
+    slide-number: false
+    width: 1600
+    height: 900
+    logo: "images/albert.jpg"
+    footer: "[home page](https://mchiapello.github.io/2023_Einstein_MB/)"
+    css: ["css/theme.css", "css/custom.css"]
+    theme: simple
+    controls: true
+editor: source
+filters:
+  - roughnotation
+editor_options: 
+  chunk_output_type: inline
+---
+
+##  {#TitleSlide data-menu-title="TitleSlide" background-image="images/back001.jpg" background-size="cover" background-opacity="0.3"}
+
+```{r setup, include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+library(gt)
+library(gtExtras)
+library(gtsummary)
+```
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Julius+Sans+One&family=Montserrat:wght@300&family=Rock+Salt&display=swap');
+</style>
+
+::: {style="position: absolute; left: 180px; top: 200px; height: 400px; width: 1500px; background-color: #69b1e9; padding: 20px; padding-left: 50px; border-radius: 5px;"}
+[Course Introduction]{style="font-size: 120px; font-weight: bold; line-height: 1em; margin: 0px; font-family: 'Architects Daughter', cursive;"}
+
+<br> <br>
+
+[Marco Chiapello, PhD]{style="font-size: 40px; font-weight: bold;"}
+
+[2023-12-15]{style="font-size: 30px;font-weight: bold;"}
+:::
+
+#  {background-image="images/back002.jpg" background-size="cover" background-opacity="0.3"}
+
+[Introduce ourself]{.tit .p-span-center}
+
+[{{< fa id-card >}}]{.icon .p-span-center}
+
+:::{.notes}
+- Introduce myself (long version)
+
+- Give 10 minutes to write down a short presentation of themself
+:::
+
+##  {background-image="images/website.png" background-size="cover" background-opacity="0.1"}
+
+[Website]{.p-span-center style="font-size: 100px"}
+
+```{r}
+#| echo: false
+#| layout-ncol: 1
+plot(qrcode::qr_code("https://mchiapello.github.io/2023_Einstein_MB/"))
+```
+
+
+:::{.notes}
+Explain all the details on the website
+:::
+
+
